@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="page" value='#{membroBean.page}'/>
+        <f:event type="preRenderView" listener='#{membroBean.paginate}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Pesquisar Membro"/>
+
+    <ui:define name="header">
+        Membro
+    </ui:define>
+
+    <ui:define name="subheader">
+        Pesquisar Membro
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="search">
+            <f:validateBean disabled="true">
+                <h:panelGroup styleClass="search">
+
+                    <p:panelGrid columnClasses="label,component" columns="2">
+                        <p:outputLabel for="membroBeanExampleNome" value="Nome:"/>
+                        <h:panelGroup>
+                            <p:inputText id="membroBeanExampleNome" value="#{membroBean.example.nome}"/>
+                            <p:message for="membroBeanExampleNome" />
+                        </h:panelGroup>
+                        <p:outputLabel for="membroBeanExampleSexo" value="Sexo:"/>
+                        <h:panelGroup>
+                            <p:selectOneRadio id="membroBeanExampleSexo" value="#{membroBean.example.sexo}">
+                                <f:selectItem itemLabel="Masculino" itemValue="M" />
+                                <f:selectItem itemLabel="Feminino" itemValue="F" />
+                            </p:selectOneRadio>
+                            <p:message for="membroBeanExampleSexo" />
+                        </h:panelGroup>
+                        <p:outputLabel for="membroBeanExampleEndereco" value="Endereço:"/>
+                        <h:panelGroup>
+                            <p:inputText id="membroBeanExampleEndereco" value="#{membroBean.example.endereco}"/>
+                            <p:message for="membroBeanExampleEndereco" />
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <h:panelGroup styleClass="buttons">
+                        <h:commandLink value="Pesquisar" action='#{membroBean.search}' styleClass="btn btn-primary"/>
+                        <h:commandLink value="Criar Novo" action='#{membroBean.create}' styleClass="btn btn-primary"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </f:validateBean>
+
+            <h:dataTable id="membroBeanPageItems" styleClass="data-table" value="#{membroBean.pageItems}" var="_item" >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:link outcome="/membro/view">
+                        <f:param name="id" value="#{_item.idMembro}"/>
+                        <h:outputText id="_itemNome" value="#{_item.nome}"/>
+                    </h:link>
+                </h:column>
+            </h:dataTable>
+            <ui:include src="/resources/scaffold/paginator.xhtml">
+                <ui:param name="paginatorBean" value='#{membroBean}'/>
+            </ui:include>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

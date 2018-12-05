@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{igrejaBean.page}'/>
+		<f:event type="preRenderView" listener='#{igrejaBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Igreja entities"/>
+
+	<ui:define name="header">
+		Igreja
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Igreja entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="igrejaBeanExampleRazaoSocial" value="Razao Social:"/>
+						<h:panelGroup>
+							<h:inputText id="igrejaBeanExampleRazaoSocial" value="#{igrejaBean.example.razaoSocial}"/>
+							<h:message for="igrejaBeanExampleRazaoSocial" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="igrejaBeanExampleCnpj" value="Cnpj:"/>
+						<h:panelGroup>
+							<h:inputText id="igrejaBeanExampleCnpj" value="#{igrejaBean.example.cnpj}"/>
+							<h:message for="igrejaBeanExampleCnpj" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="igrejaBeanExampleEndereco" value="Endereco:"/>
+						<h:panelGroup>
+							<h:inputText id="igrejaBeanExampleEndereco" value="#{igrejaBean.example.endereco}"/>
+							<h:message for="igrejaBeanExampleEndereco" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="igrejaBeanExampleNumero" value="Numero:"/>
+						<h:panelGroup>
+							<h:inputText id="igrejaBeanExampleNumero" maxLength="4" value="#{igrejaBean.example.numero}"/>
+							<h:message for="igrejaBeanExampleNumero" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="igrejaBeanExampleComplemento" value="Complemento:"/>
+						<h:panelGroup>
+							<h:inputText id="igrejaBeanExampleComplemento" maxLength="15" value="#{igrejaBean.example.complemento}"/>
+							<h:message for="igrejaBeanExampleComplemento" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{igrejaBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{igrejaBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="igrejaBeanPageItems" styleClass="data-table" value="#{igrejaBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Razao Social"/>
+					</f:facet>
+					<h:link outcome="/igreja/view">
+						<f:param name="id" value="#{_item.idIgreja}"/>
+						<h:outputText id="_itemRazaoSocial" value="#{_item.razaoSocial}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cnpj"/>
+					</f:facet>
+					<h:link outcome="/igreja/view">
+						<f:param name="id" value="#{_item.idIgreja}"/>
+						<h:outputText id="_itemCnpj" value="#{_item.cnpj}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Endereco"/>
+					</f:facet>
+					<h:link outcome="/igreja/view">
+						<f:param name="id" value="#{_item.idIgreja}"/>
+						<h:outputText id="_itemEndereco" value="#{_item.endereco}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Numero"/>
+					</f:facet>
+					<h:link outcome="/igreja/view">
+						<f:param name="id" value="#{_item.idIgreja}"/>
+						<h:outputText id="_itemNumero" value="#{_item.numero}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Complemento"/>
+					</f:facet>
+					<h:link outcome="/igreja/view">
+						<f:param name="id" value="#{_item.idIgreja}"/>
+						<h:outputText id="_itemComplemento" value="#{_item.complemento}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{igrejaBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

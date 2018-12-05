@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{igrejaBean.id}'/>
+		<f:event type="preRenderView" listener='#{igrejaBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Igreja"/>
+
+	<ui:define name="header">
+		Igreja
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Igreja
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="igrejaBeanIgrejaRazaoSocial" value="Razao Social:"/>
+			<h:outputText id="igrejaBeanIgrejaRazaoSocial" value="#{igrejaBean.igreja.razaoSocial}"/>
+			<h:outputText/>
+			<h:outputLabel for="igrejaBeanIgrejaCnpj" value="Cnpj:"/>
+			<h:outputText id="igrejaBeanIgrejaCnpj" value="#{igrejaBean.igreja.cnpj}"/>
+			<h:outputText/>
+			<h:outputLabel for="igrejaBeanIgrejaEndereco" value="Endereco:"/>
+			<h:outputText id="igrejaBeanIgrejaEndereco" value="#{igrejaBean.igreja.endereco}"/>
+			<h:outputText/>
+			<h:outputLabel for="igrejaBeanIgrejaNumero" value="Numero:"/>
+			<h:outputText id="igrejaBeanIgrejaNumero" value="#{igrejaBean.igreja.numero}"/>
+			<h:outputText/>
+			<h:outputLabel for="igrejaBeanIgrejaComplemento" value="Complemento:"/>
+			<h:outputText id="igrejaBeanIgrejaComplemento" value="#{igrejaBean.igreja.complemento}"/>
+			<h:outputText/>
+			<h:outputLabel for="igrejaBeanIgrejaFone1" value="Fone 1:"/>
+			<h:outputText id="igrejaBeanIgrejaFone1" value="#{igrejaBean.igreja.fone1}"/>
+			<h:outputText/>
+			<h:outputLabel for="igrejaBeanIgrejaFone2" value="Fone 2:"/>
+			<h:outputText id="igrejaBeanIgrejaFone2" value="#{igrejaBean.igreja.fone2}"/>
+			<h:outputText/>
+			<h:outputLabel for="igrejaBeanIgrejaCategora" value="Categora:"/>
+			<h:outputText id="igrejaBeanIgrejaCategora" value="#{igrejaBean.igreja.categora}"/>
+			<h:outputText/>
+			<h:outputLabel for="igrejaBeanIgrejaDataCad" value="Data Cad:"/>
+			<h:outputText id="igrejaBeanIgrejaDataCad" value="#{igrejaBean.igreja.dataCad}">
+				<f:convertDateTime type="date"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="igrejaBeanIgrejaDataFun" value="Data Fun:"/>
+			<h:outputText id="igrejaBeanIgrejaDataFun" value="#{igrejaBean.igreja.dataFun}">
+				<f:convertDateTime type="date"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="igrejaBeanIgrejaEmail" value="Email:"/>
+			<h:outputText id="igrejaBeanIgrejaEmail" value="#{igrejaBean.igreja.email}"/>
+			<h:outputText/>
+			<h:outputLabel for="igrejaBeanIgrejaNomeMunicipio" value="Nome Municipio:"/>
+			<h:outputText id="igrejaBeanIgrejaNomeMunicipio" value="#{igrejaBean.igreja.nomeMunicipio}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

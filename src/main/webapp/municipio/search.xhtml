@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{municipioBean.page}'/>
+		<f:event type="preRenderView" listener='#{municipioBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Municipio entities"/>
+
+	<ui:define name="header">
+		Municipio
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Municipio entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="municipioBeanExampleNome" value="Nome:"/>
+						<h:panelGroup>
+							<h:inputText id="municipioBeanExampleNome" value="#{municipioBean.example.nome}"/>
+							<h:message for="municipioBeanExampleNome" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="municipioBeanExampleUf" value="Uf:"/>
+						<h:panelGroup>
+							<h:inputText id="municipioBeanExampleUf" maxLength="2" value="#{municipioBean.example.uf}"/>
+							<h:message for="municipioBeanExampleUf" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="municipioBeanExampleCep" value="Cep:"/>
+						<h:panelGroup>
+							<h:inputText id="municipioBeanExampleCep" maxLength="10" value="#{municipioBean.example.cep}"/>
+							<h:message for="municipioBeanExampleCep" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{municipioBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{municipioBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="municipioBeanPageItems" styleClass="data-table" value="#{municipioBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/municipio/view">
+						<f:param name="id" value="#{_item.idMunicipio}"/>
+						<h:outputText id="_itemNome" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Uf"/>
+					</f:facet>
+					<h:link outcome="/municipio/view">
+						<f:param name="id" value="#{_item.idMunicipio}"/>
+						<h:outputText id="_itemUf" value="#{_item.uf}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cep"/>
+					</f:facet>
+					<h:link outcome="/municipio/view">
+						<f:param name="id" value="#{_item.idMunicipio}"/>
+						<h:outputText id="_itemCep" value="#{_item.cep}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{municipioBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

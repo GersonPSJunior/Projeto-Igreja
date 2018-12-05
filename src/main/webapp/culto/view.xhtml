@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{cultoBean.id}'/>
+		<f:event type="preRenderView" listener='#{cultoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Culto"/>
+
+	<ui:define name="header">
+		Culto
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Culto
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="cultoBeanCultoPastor" value="Pastor:"/>
+			<h:outputText id="cultoBeanCultoPastor" value="#{cultoBean.culto.pastor}"/>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoDataCulto" value="Data Culto:"/>
+			<h:outputText id="cultoBeanCultoDataCulto" value="#{cultoBean.culto.dataCulto}">
+				<f:convertDateTime type="date"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoDiaSemana" value="Dia Semana:"/>
+			<h:outputText id="cultoBeanCultoDiaSemana" value="#{cultoBean.culto.diaSemana}"/>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoHora" value="Hora:"/>
+			<h:outputText id="cultoBeanCultoHora" value="#{cultoBean.culto.hora}">
+				<f:convertDateTime type="time"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoQtdConversoes" value="Qtd Conversoes:"/>
+			<h:outputText id="cultoBeanCultoQtdConversoes" value="#{cultoBean.culto.qtdConversoes}"/>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoQtdVisita" value="Qtd Visita:"/>
+			<h:outputText id="cultoBeanCultoQtdVisita" value="#{cultoBean.culto.qtdVisita}"/>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoQtdTotPresente" value="Qtd Tot Presente:"/>
+			<h:outputText id="cultoBeanCultoQtdTotPresente" value="#{cultoBean.culto.qtdTotPresente}"/>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoTotDizimo" value="Tot Dizimo:"/>
+			<h:outputText id="cultoBeanCultoTotDizimo" value="#{cultoBean.culto.totDizimo}"/>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoTotOfertasGerais" value="Tot Ofertas Gerais:"/>
+			<h:outputText id="cultoBeanCultoTotOfertasGerais" value="#{cultoBean.culto.totOfertasGerais}"/>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoTotOfertasMissoes" value="Tot Ofertas Missoes:"/>
+			<h:outputText id="cultoBeanCultoTotOfertasMissoes" value="#{cultoBean.culto.totOfertasMissoes}"/>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoOutrasEntradas" value="Outras Entradas:"/>
+			<h:outputText id="cultoBeanCultoOutrasEntradas" value="#{cultoBean.culto.outrasEntradas}"/>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoTotArrecadacao" value="Tot Arrecadacao:"/>
+			<h:outputText id="cultoBeanCultoTotArrecadacao" value="#{cultoBean.culto.totArrecadacao}"/>
+			<h:outputText/>
+			<h:outputLabel for="cultoBeanCultoNomeIgreja" value="Nome Igreja:"/>
+			<h:outputText id="cultoBeanCultoNomeIgreja" value="#{cultoBean.culto.nomeIgreja}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value='#{cultoBean.id}'/>
+        <f:event type="preRenderView" listener='#{cultoBean.retrieve}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Create Culto"/>
+
+    <ui:define name="header">
+        Culto
+    </ui:define>
+
+    <ui:define name="subheader">
+        <c:choose>
+            <c:when test='#{!empty cultoBean.id}'>
+                Editar Culto
+            </c:when>
+            <c:otherwise>
+                Criar Novo Culto
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="create">
+
+            <p:panelGrid columnClasses="label,component" columns="2">
+                <p:outputLabel for="cultoBeanCultoPastor" value="Pastor:"/>
+                <h:panelGroup>
+                    <p:inputText id="cultoBeanCultoPastor" value="#{cultoBean.culto.pastor}"
+                                 validatorMessage="Nome do pastor não pode ser superior a 75!">
+                        <f:validateLength maximum="75" />
+                        <f:ajax event="blur" render="messages" />
+                    </p:inputText>
+                    <p:message for="cultoBeanCultoPastor" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoDataCulto" value="Data Culto:"/>
+                <h:panelGroup>
+                    <p:calendar id="cultoBeanCultoDataCulto" value="#{cultoBean.culto.dataCulto.time}"
+                                pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" mask="true"/>
+                    <p:message for="cultoBeanCultoDataCulto" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoDiaSemana" value="Dia Semana:"/>
+                <h:panelGroup>
+                    <p:inputText id="cultoBeanCultoDiaSemana" value="#{cultoBean.culto.diaSemana}"/>
+                    <p:message for="cultoBeanCultoDiaSemana" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoHora" value="Horário:"/>
+                <h:panelGroup>
+                    <p:calendar id="cultoBeanCultoHora" value="#{cultoBean.culto.hora}"
+                                pattern="HH:mm" timeOnly="true" mask="true"/>
+                    <p:message for="cultoBeanCultoHora" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoQtdConversoes" value="Conversões:"/>
+                <h:panelGroup>
+                    <p:inputText id="cultoBeanCultoQtdConversoes" value="#{cultoBean.culto.qtdConversoes}"/>
+                    <p:message for="cultoBeanCultoQtdConversoes" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoQtdVisita" value="Visitantes:"/>
+                <h:panelGroup>
+                    <p:inputText id="cultoBeanCultoQtdVisita" value="#{cultoBean.culto.qtdVisita}"/>
+                    <p:message for="cultoBeanCultoQtdVisita" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoQtdTotPresente" value="Total Presente:"/>
+                <h:panelGroup>
+                    <p:inputText id="cultoBeanCultoQtdTotPresente" value="#{cultoBean.culto.qtdTotPresente}"/>
+                    <p:message for="cultoBeanCultoQtdTotPresente" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoTotDizimo" value="Total Dizimo:"/>
+                <h:panelGroup>
+                    <p:inputText id="cultoBeanCultoTotDizimo" value="#{cultoBean.culto.totDizimo}"/>
+                    <p:message for="cultoBeanCultoTotDizimo" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoTotOfertasGerais" value="Ofertas Gerais:"/>
+                <h:panelGroup>
+                    <p:inputText id="cultoBeanCultoTotOfertasGerais" value="#{cultoBean.culto.totOfertasGerais}"/>
+                    <p:message for="cultoBeanCultoTotOfertasGerais" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoTotOfertasMissoes" value="Ofertas Missões:"/>
+                <h:panelGroup>
+                    <p:inputText id="cultoBeanCultoTotOfertasMissoes" value="#{cultoBean.culto.totOfertasMissoes}"/>
+                    <p:message for="cultoBeanCultoTotOfertasMissoes" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoOutrasEntradas" value="Outras Entradas:"/>
+                <h:panelGroup>
+                    <p:inputText id="cultoBeanCultoOutrasEntradas" value="#{cultoBean.culto.outrasEntradas}"/>
+                    <p:message for="cultoBeanCultoOutrasEntradas" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoTotArrecadacao" value="Total Arrecadado:"/>
+                <h:panelGroup>
+                    <p:inputText id="cultoBeanCultoTotArrecadacao" value="#{cultoBean.culto.totArrecadacao}"/>
+                    <p:message for="cultoBeanCultoTotArrecadacao" />
+                </h:panelGroup>
+                <p:outputLabel for="cultoBeanCultoNomeIgreja" value="Nome Igreja:"/>
+                <h:panelGroup>
+                    <p:inputText id="cultoBeanCultoNomeIgreja" value="#{cultoBean.culto.nomeIgreja}"
+                                 validatorMessage="Nome da igreja não pode ser superior a 100!">
+                        <f:validateLength maximum="100" />
+                        <f:ajax event="blur" render="messages" />
+                    </p:inputText>
+                    <p:message for="cultoBeanCultoNomeIgreja" />
+                </h:panelGroup>
+            </p:panelGrid>
+
+            <div class="buttons">
+                <h:commandLink value="Salvar" action='#{cultoBean.update}' styleClass="btn btn-primary"/>
+                <c:choose>
+                    <c:when test='#{!empty cultoBean.id}'>
+                        <h:link value="Cancelar" outcome="view" styleClass="btn btn-primary">
+                            <f:param name="id" value='#{cultoBean.id}'/>
+                        </h:link>
+                        <h:commandLink value="Deletar" action='#{cultoBean.delete}' styleClass="btn btn-primary"/>
+                    </c:when>
+                    <c:otherwise>
+                        <h:link value="Cancelar" outcome="search" styleClass="btn btn-primary"/>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

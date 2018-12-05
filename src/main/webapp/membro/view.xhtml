@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value='#{membroBean.id}'/>
+        <f:event type="preRenderView" listener='#{membroBean.retrieve}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Dados do Membro"/>
+
+    <ui:define name="header">
+        Membro
+    </ui:define>
+
+    <ui:define name="subheader">
+        Dados do Membro
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <p:panelGrid columnClasses="label,component" columns="2">
+            <p:outputLabel for="membroBeanMembroNome" value="Nome:"/>
+            <h:outputText id="membroBeanMembroNome" value="#{membroBean.membro.nome}"/>
+            <p:outputLabel for="membroBeanMembroSexo" value="Sexo:"/>
+            <h:outputText id="membroBeanMembroSexo" value="#{membroBean.membro.sexo}"/>
+            <p:outputLabel for="membroBeanMembroNascimento" value="Nascimento:"/>
+            <h:outputText id="membroBeanMembroNascimento" value="#{membroBean.membro.nascimento.time}">
+                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+            </h:outputText>
+            <p:outputLabel for="membroBeanMembroEndereco" value="Endereço:"/>
+            <h:outputText id="membroBeanMembroEndereco" value="#{membroBean.membro.endereco}"/>
+            <p:outputLabel for="membroBeanMembroNumero" value="Numero:"/>
+            <h:outputText id="membroBeanMembroNumero" value="#{membroBean.membro.numero}"/>
+            <p:outputLabel for="membroBeanMembroComplemento" value="Complemento:"/>
+            <h:outputText id="membroBeanMembroComplemento" value="#{membroBean.membro.complemento}"/>
+            <p:outputLabel for="membroBeanMembroBairro" value="Bairro:"/>
+            <h:outputText id="membroBeanMembroBairro" value="#{membroBean.membro.bairro}"/>
+            <p:outputLabel for="membroBeanMembroCep" value="Cep:"/>
+            <h:outputText id="membroBeanMembroCep" value="#{membroBean.membro.cep}"/>
+            <p:outputLabel for="membroBeanMembroEmail" value="Email:"/>
+            <h:outputText id="membroBeanMembroEmail" value="#{membroBean.membro.email}"/>
+            <p:outputLabel for="membroBeanMembroFone" value="Fone:"/>
+            <h:outputText id="membroBeanMembroFone" value="#{membroBean.membro.fone}"/>
+            <p:outputLabel for="membroBeanMembroNomePai" value="Nome Pai:"/>
+            <h:outputText id="membroBeanMembroNomePai" value="#{membroBean.membro.nomePai}"/>
+            <p:outputLabel for="membroBeanMembroNomeMae" value="Nome Mãe:"/>
+            <h:outputText id="membroBeanMembroNomeMae" value="#{membroBean.membro.nomeMae}"/>
+            <p:outputLabel for="membroBeanMembroNacionalidade" value="Nacionalidade:"/>
+            <h:outputText id="membroBeanMembroNacionalidade" value="#{membroBean.membro.nacionalidade}"/>
+            <p:outputLabel for="membroBeanMembroEstCivil" value="Estado Civil:"/>
+            <h:outputText id="membroBeanMembroEstCivil" value="#{membroBean.membro.estCivil}"/>
+            <p:outputLabel for="membroBeanMembroRg" value="Rg:"/>
+            <h:outputText id="membroBeanMembroRg" value="#{membroBean.membro.rg}"/>
+            <p:outputLabel for="membroBeanMembroCpf" value="Cpf:"/>
+            <h:outputText id="membroBeanMembroCpf" value="#{membroBean.membro.cpf}"/>
+            <p:outputLabel for="membroBeanMembroGrauInstr" value="Grau de Instrução:"/>
+            <h:outputText id="membroBeanMembroGrauInstr" value="#{membroBean.membro.grauInstr}"/>
+            <p:outputLabel for="membroBeanMembroAreaForm" value="Área Formação:"/>
+            <h:outputText id="membroBeanMembroAreaForm" value="#{membroBean.membro.areaForm}"/>
+            <p:outputLabel for="membroBeanMembroProfissao" value="Profissão:"/>
+            <h:outputText id="membroBeanMembroProfissao" value="#{membroBean.membro.profissao}"/>
+            <p:outputLabel for="membroBeanMembroSalario" value="Salário:"/>
+            <h:outputText id="membroBeanMembroSalario" value="#{membroBean.membro.salario}"/>
+            <p:outputLabel for="membroBeanMembroIgrejaBat" value="Igreja Batismo:"/>
+            <h:outputText id="membroBeanMembroIgrejaBat" value="#{membroBean.membro.igrejaBat}"/>
+            <p:outputLabel for="membroBeanMembroPastorBat" value="Pastor Batismo:"/>
+            <h:outputText id="membroBeanMembroPastorBat" value="#{membroBean.membro.pastorBat}"/>
+            <p:outputLabel for="membroBeanMembroDataBatAgua" value="Data Batismo:"/>
+            <h:outputText id="membroBeanMembroDataBatAgua" value="#{membroBean.membro.dataBatAgua.time}">
+                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+            </h:outputText>
+        </p:panelGrid>
+
+        <div class="buttons">
+            <h:link value="Pesquisar Membro" outcome="search" styleClass="btn btn-primary"/> 
+            <h:link value="Editar" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+            <h:link value="Criar Novo" outcome="create" styleClass="btn btn-primary"/>
+        </div>
+    </ui:define>
+
+</ui:composition>

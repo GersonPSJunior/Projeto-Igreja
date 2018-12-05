@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{cultoBean.page}'/>
+		<f:event type="preRenderView" listener='#{cultoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Culto entities"/>
+
+	<ui:define name="header">
+		Culto
+	</ui:define>
+
+	<ui:define name="subheader">
+		Pesquisar Culto
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="cultoBeanExamplePastor" value="Pastor:"/>
+						<h:panelGroup>
+							<h:inputText id="cultoBeanExamplePastor" maxLength="75" value="#{cultoBean.example.pastor}"/>
+							<h:message for="cultoBeanExamplePastor" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="cultoBeanExampleDiaSemana" value="Dia Semana:"/>
+						<h:panelGroup>
+							<h:inputText id="cultoBeanExampleDiaSemana" value="#{cultoBean.example.diaSemana}"/>
+							<h:message for="cultoBeanExampleDiaSemana" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="cultoBeanExampleQtdConversoes" value="Qtd Conversoes:"/>
+						<h:panelGroup>
+							<h:inputText id="cultoBeanExampleQtdConversoes" value="#{cultoBean.example.qtdConversoes}"/>
+							<h:message for="cultoBeanExampleQtdConversoes" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="cultoBeanExampleQtdVisita" value="Qtd Visita:"/>
+						<h:panelGroup>
+							<h:inputText id="cultoBeanExampleQtdVisita" value="#{cultoBean.example.qtdVisita}"/>
+							<h:message for="cultoBeanExampleQtdVisita" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="cultoBeanExampleQtdTotPresente" value="Qtd Tot Presente:"/>
+						<h:panelGroup>
+							<h:inputText id="cultoBeanExampleQtdTotPresente" value="#{cultoBean.example.qtdTotPresente}"/>
+							<h:message for="cultoBeanExampleQtdTotPresente" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{cultoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{cultoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="cultoBeanPageItems" styleClass="data-table" value="#{cultoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Pastor"/>
+					</f:facet>
+					<h:link outcome="/culto/view">
+						<f:param name="id" value="#{_item.idCulto}"/>
+						<h:outputText id="_itemPastor" value="#{_item.pastor}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Data Culto"/>
+					</f:facet>
+					<h:link outcome="/culto/view">
+						<f:param name="id" value="#{_item.idCulto}"/>
+						<h:outputText id="_itemDataCulto" value="#{_item.dataCulto}">
+							<f:convertDateTime type="date"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Dia Semana"/>
+					</f:facet>
+					<h:link outcome="/culto/view">
+						<f:param name="id" value="#{_item.idCulto}"/>
+						<h:outputText id="_itemDiaSemana" value="#{_item.diaSemana}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Hora"/>
+					</f:facet>
+					<h:link outcome="/culto/view">
+						<f:param name="id" value="#{_item.idCulto}"/>
+						<h:outputText id="_itemHora" value="#{_item.hora}">
+							<f:convertDateTime type="time"/>
+						</h:outputText>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Qtd Conversoes"/>
+					</f:facet>
+					<h:link outcome="/culto/view">
+						<f:param name="id" value="#{_item.idCulto}"/>
+						<h:outputText id="_itemQtdConversoes" value="#{_item.qtdConversoes}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{cultoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

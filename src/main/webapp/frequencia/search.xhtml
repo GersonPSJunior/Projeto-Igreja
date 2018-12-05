@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{frequenciaBean.page}'/>
+		<f:event type="preRenderView" listener='#{frequenciaBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Frequencia entities"/>
+
+	<ui:define name="header">
+		Frequencia
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Frequencia entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="frequenciaBeanExampleQtdMembros" value="Qtd Membros:"/>
+						<h:panelGroup>
+							<h:inputText id="frequenciaBeanExampleQtdMembros" value="#{frequenciaBean.example.qtdMembros}"/>
+							<h:message for="frequenciaBeanExampleQtdMembros" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="frequenciaBeanExampleQtdVisitas" value="Qtd Visitas:"/>
+						<h:panelGroup>
+							<h:inputText id="frequenciaBeanExampleQtdVisitas" value="#{frequenciaBean.example.qtdVisitas}"/>
+							<h:message for="frequenciaBeanExampleQtdVisitas" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{frequenciaBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{frequenciaBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="frequenciaBeanPageItems" styleClass="data-table" value="#{frequenciaBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Qtd Membros"/>
+					</f:facet>
+					<h:link outcome="/frequencia/view">
+						<f:param name="id" value="#{_item.idFrequencia}"/>
+						<h:outputText id="_itemQtdMembros" value="#{_item.qtdMembros}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Qtd Visitas"/>
+					</f:facet>
+					<h:link outcome="/frequencia/view">
+						<f:param name="id" value="#{_item.idFrequencia}"/>
+						<h:outputText id="_itemQtdVisitas" value="#{_item.qtdVisitas}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{frequenciaBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

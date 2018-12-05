@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="_template.xhtml">
+        <ui:define name="titulo">
+            <p:outputPanel> Novo Membro</p:outputPanel>
+        </ui:define>
+
+        <ui:define name="conteudo">
+            <h:form>
+
+                <p:fieldset legend="Dados do Membro">
+                    <p:panelGrid columns="4">
+
+                        <p:outputLabel value="Nome:" for="titulo"/>
+                        <p:inputText id="titulo" value="#{membroBean.membro.nome}"
+                                     required="true" requiredMessage="Nome Obrigatório"
+                                     validatorMessage="Nome não pode ser superior a 50">
+                            <f:validateLength maximum="50"/>
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputText>
+
+                        <p:outputLabel value="Data de Nascimento:" for="nascimento"/>
+                        <p:calendar id="nascimento" value="#{membroBean.membro.nascimento}"
+                                    pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" mask="true" />
+
+                        <p:outputLabel value="Sexo:" for="sexo" />
+                        <p:inputMask id="sexo" value="#{membroBean.membro.sexo}" mask="a"/>
+                        
+                        <p:outputLabel value="Endereço:" for="endereco" />
+                        <p:inputText id="endereco" value="#{membroBean.membro.endereco}"
+                                     validatorMessage="Enderço não pode ser superior a 75">
+                            <f:validateLength maximum="75"/>
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputText>
+
+                        <p:outputLabel value="Numero:" for="numero" />
+                        <p:inputMask id="numero" value="#{membroBean.membro.numero}" mask="9999" />
+
+                        <p:outputLabel value="Complemento:" for="complemento" />
+                        <p:inputText id="complemento" value="#{membroBean.membro.complemento}" 
+                                     validatorMessage="Complemento não pode ser superior a 15">
+                            <f:validateLength maximum="15"/>
+                            <f:ajax event="blur" render="messages" />
+                    </p:inputText>
+
+                    <p:outputLabel value="Bairro:" for="bairro" />
+                    <p:inputText id="bairro" value="#{membroBean.membro.bairro}"
+                                 validatorMessage="Bairro não pode ser superior a 25">
+                        <f:validateLength maximum="25"/>
+                        <f:ajax event="blur" render="messages" />
+                    </p:inputText>
+
+                    <p:outputLabel value="CEP:" for="cep" />
+                    <p:inputMask id="cep" value="#{membroBean.membro.cep}" mask="99999999" />
+
+                    <p:outputLabel value="E-mail:" for="email" />
+                    <p:inputText id="email" value="#{membroBean.membro.email}" 
+                                 validatorMessage="Email não pode ser superior a 50">
+                        <f:validateLength maximum="50"/>
+                        <f:ajax event="blur" render="messages"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Telefone:" for="fone" />
+                    <p:inputText id="fone" value="#{membroBean.membro.fone}"
+                                 validatorMessage="Numero não pode ser superior a 20">
+                        <f:validateLength maximum="20"/>
+                        <f:ajax event="blur" render="messages"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Nome do Pai:" for="nomePai" />
+                    <p:inputText id="nomePai" value="#{membroBean.membro.nomePai}"/>
+
+                    <p:outputLabel value="Nome da Mãe:" for="nomeMae" />
+                    <p:inputText id="nomeMae" value="#{membroBean.membro.nomeMae}"/>
+
+                    <p:outputLabel value="Nacionalidade:" for="nacionalidade" />
+                    <p:inputText id="nacionalidade" value="#{membroBean.membro.nacionalidade}"
+                                 validatorMessage="Nacionalidade não pode ser superior a 25">
+                        <f:validateLength maximum="25"/>
+                        <f:ajax event="blur" render="messages"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Estado Civil:" for="estCivil" />
+                    <p:inputText id="estCivil" value="#{membroBean.membro.estCivil}"/>
+
+                    <p:outputLabel value="RG:" for="rg" />
+                    <p:inputText id="rg" value="#{membroBean.membro.rg}"
+                                 validatorMessage="RG não pode ser superior a 20">
+                        <f:validateLength maximum="20"/>
+                        <f:ajax event="blur" render="messges"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="CPF:" for="cpf" />
+                    <p:inputMask id="cpf" value="#{membroBean.membro.cpf}" mask="999.999.999-99"/>
+                    
+                    <p:outputLabel value="Grau de Instrução:" for="grauInstr" />
+                    <p:inputText id="grauInstr" value="#{membroBean.membro.grauInstr}"/>                    
+
+                    <p:outputLabel value="Área de Formação:" for="areaForm" />
+                    <p:inputText id="areaForm" value="#{membroBean.membro.areaForm}"/>
+
+                    <p:outputLabel value="Profissão:" for="profissao" />
+                    <p:inputText id="profissao" value="#{membroBean.membro.profissao}"/>
+
+                    <p:outputLabel value="Salario:" for="salario" />
+                    <p:inputText id="salario" value="#{membroBean.membro.salario}"/>
+
+                    <p:outputLabel value="Data de Batismo:" for="dataBat" />
+                    <p:calendar id="dataBat" value="#{membroBean.membro.dataBatAgua}"
+                                pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" mask="true"/>
+
+                    <p:outputLabel value="Igreja Batismo:" for="igrejaBat" />
+                    <p:inputText id="igrejaBat" value="#{membroBean.membro.igrejaBat}"/>
+
+                    <p:outputLabel value="Pastor Batismo:" for="pastorBat" />
+                    <p:inputText id="pastorBat" value="#{membroBean.membro.pastorBat}"/>
+                </p:panelGrid>
+            </p:fieldset>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
+
