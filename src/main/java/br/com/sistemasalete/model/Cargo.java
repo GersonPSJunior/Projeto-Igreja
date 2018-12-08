@@ -24,7 +24,7 @@ public class Cargo implements Serializable {
 	@Column(length = 50)
 	private String nomeCargo;
 	@Lob
-	private String Descricao;
+	private String descricao;
 	@Temporal(TemporalType.DATE)
 	private Calendar dataInic = Calendar.getInstance();
 	@Temporal(TemporalType.DATE)
@@ -51,11 +51,11 @@ public class Cargo implements Serializable {
 	}
 
 	public String getDescricao() {
-		return Descricao;
+		return descricao;
 	}
 
 	public void setDescricao(String Descricao) {
-		this.Descricao = Descricao;
+		this.descricao = Descricao;
 	}
 
 	public Calendar getDataInic() {
